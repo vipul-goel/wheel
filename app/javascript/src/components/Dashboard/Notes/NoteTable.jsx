@@ -1,5 +1,5 @@
 import React from "react";
-import { Checkbox, Avatar, Badge, Button } from "neetoui";
+import { Checkbox, Avatar, Badge, Button, Tooltip } from "neetoui";
 
 const GetBadgeColor = tag => {
   switch (tag) {
@@ -77,7 +77,7 @@ export default function NoteTable({
                 />
               </td>
               <td>
-                <div className="flex flex-row items-center justify-start text-gray-900">
+                <div className="flex flex-row items-center justify-start text-purple-600">
                   {note.title}
                 </div>
               </td>
@@ -97,14 +97,17 @@ export default function NoteTable({
                 />
               </td>
               <td>
-                <div className="flex flex-row">
-                  <Button style="icon" icon="ri-edit-line" className="mx-2" />
-                  <Button
-                    style="icon"
-                    icon="ri-delete-bin-5-line"
-                    className="mx-2"
-                    onClick={() => handleDeleteNote(note.id)}
-                  />
+                <div className="flex flex-row space-x-2">
+                  <Tooltip content="Edit" position="bottom">
+                    <Button style="icon" icon="ri-edit-line" />
+                  </Tooltip>
+                  <Tooltip content="Delete" position="bottom">
+                    <Button
+                      style="icon"
+                      icon="ri-delete-bin-5-line"
+                      onClick={() => handleDeleteNote(note.id)}
+                    />
+                  </Tooltip>
                 </div>
               </td>
             </tr>

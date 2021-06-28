@@ -3,41 +3,15 @@ import { Button, PageLoader } from "neetoui";
 import EmptyState from "components/Common/EmptyState";
 import EmptyNotesListImage from "images/EmptyNotesList";
 import { Header, SubHeader } from "neetoui/layouts";
+import {
+  InitialNotesData,
+  TagsValuesArray,
+  DashboardPaginationProps,
+} from "./constants";
 
 import NoteTable from "./NoteTable";
 import NewNotePane from "./NewNotePane";
 import DeleteAlert from "./DeleteAlert";
-
-const InitialNotesData = [
-  {
-    id: 1,
-    title: "Change Support Email",
-    description: "forward all internal mails...",
-    tag: "Internal",
-    createdDate: "April 10, 2021",
-    isDueDate: false,
-    contact: "Neeraj Singh",
-  },
-  {
-    id: 2,
-    title: "Feedback",
-    description: "Feedback v1.0",
-    tag: "Agile Workflow",
-    createdDate: "April 10, 2021",
-    isDueDate: true,
-    dueDate: "April 10, 2021",
-    contact: "Vinay V",
-  },
-  {
-    id: 3,
-    title: "Feedback Hover",
-    description: "Feedback V2.0......",
-    tag: "Bug",
-    createdDate: "April 10, 2021",
-    isDueDate: false,
-    contact: "Charlie Smith",
-  },
-];
 
 const Notes = () => {
   const [loading, setLoading] = useState(false);
@@ -97,17 +71,9 @@ const Notes = () => {
               disabled: !selectedNoteIds.length,
             }}
             sortProps={{
-              options: [
-                { label: "Tags", value: "tags" },
-                { label: "Name", value: "name" },
-                { label: "Created Date", value: "createdDate" },
-              ],
+              options: TagsValuesArray,
             }}
-            paginationProps={{
-              count: 250,
-              pageNo: 1,
-              pageSize: 50,
-            }}
+            paginationProps={DashboardPaginationProps}
             showMenu={false}
           />
           <NoteTable
