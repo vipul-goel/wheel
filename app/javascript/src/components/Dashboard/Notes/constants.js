@@ -11,7 +11,7 @@ yup.addMethod(yup.string, "validDateInput", function (errorMessage) {
   });
 });
 
-export const InitialNotesData = [
+export const INITIAL_NOTES_DATA = [
   {
     id: 1,
     title: "Change Support Email",
@@ -42,32 +42,32 @@ export const InitialNotesData = [
   },
 ];
 
-export const SortValuesArray = [
+export const SORT_VALUES_ARRAY = [
   { label: "Tags", value: "tags" },
   { label: "Name", value: "name" },
   { label: "Created Date", value: "createdDate" },
 ];
 
-export const TagsValuesArray = [
+export const TAG_VALUES_ARRAY = [
   { value: "Internal", label: "Internal" },
   { value: "Agile Workflow", label: "Agile Workflow" },
   { value: "Bug", label: "Bug" },
 ];
 
-export const ContactsValuesArray = [
+export const CONTACT_VALUES_ARRAY = [
   { value: "Neeraj Singh", label: "Neeraj Singh" },
   { value: "Vinay V", label: "Vinay V" },
   { value: "Charlie Smith", label: "Charlie Smith" },
   { value: "Karthik Menon", label: "Karthik Menon" },
 ];
 
-export const DashboardPaginationProps = {
+export const DASHBOARD_PAGINATION_PROPS = {
   count: 250,
   pageNo: 1,
   pageSize: 50,
 };
 
-export const AddNoteFormInitialValues = {
+export const INITIAL_NOTE_FORM_VALUES = {
   title: "",
   tag: "",
   description: "",
@@ -76,7 +76,7 @@ export const AddNoteFormInitialValues = {
   dueDate: "",
 };
 
-export const AddNoteFormValidations = yup.object({
+export const NOTE_FORM_VALIDATIONS = yup.object({
   title: yup.string().required("Title is required"),
   tag: yup.string().required("Tag is required"),
   description: yup.string().required("Description is required"),

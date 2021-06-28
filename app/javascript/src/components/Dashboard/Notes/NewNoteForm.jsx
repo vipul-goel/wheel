@@ -5,10 +5,10 @@ import { Input, Textarea, Select, Switch } from "neetoui/formik";
 import { Button } from "neetoui";
 
 import {
-  AddNoteFormInitialValues,
-  AddNoteFormValidations,
-  ContactsValuesArray,
-  TagsValuesArray,
+  INITIAL_NOTE_FORM_VALUES,
+  NOTE_FORM_VALIDATIONS,
+  CONTACT_VALUES_ARRAY,
+  TAG_VALUES_ARRAY,
 } from "./constants";
 
 export default function NewNoteForm({ onClose, addNewNote }) {
@@ -22,9 +22,9 @@ export default function NewNoteForm({ onClose, addNewNote }) {
   };
   return (
     <Formik
-      initialValues={AddNoteFormInitialValues}
+      initialValues={INITIAL_NOTE_FORM_VALUES}
       onSubmit={handleSubmit}
-      validationSchema={AddNoteFormValidations}
+      validationSchema={NOTE_FORM_VALIDATIONS}
     >
       {({ isSubmitting, handleChange, setFieldValue, values }) => (
         <Form className="space-y-6">
@@ -37,7 +37,7 @@ export default function NewNoteForm({ onClose, addNewNote }) {
               handleChange(option.value);
               setFieldValue("tag", option.value);
             }}
-            options={TagsValuesArray}
+            options={TAG_VALUES_ARRAY}
           />
           <Textarea label="Note Description" name="description" rows={4} />
           <Select
@@ -48,7 +48,7 @@ export default function NewNoteForm({ onClose, addNewNote }) {
               handleChange(option.value);
               setFieldValue("contact", option.value);
             }}
-            options={ContactsValuesArray}
+            options={CONTACT_VALUES_ARRAY}
           />
           <div className="flex flex-row items-center justify-between">
             Add Due Date to Note
