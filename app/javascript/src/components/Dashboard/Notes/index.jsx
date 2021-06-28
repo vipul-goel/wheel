@@ -5,7 +5,7 @@ import EmptyNotesListImage from "images/EmptyNotesList";
 import { Header, SubHeader } from "neetoui/layouts";
 import {
   InitialNotesData,
-  TagsValuesArray,
+  SortValuesArray,
   DashboardPaginationProps,
 } from "./constants";
 
@@ -71,7 +71,7 @@ const Notes = () => {
               disabled: !selectedNoteIds.length,
             }}
             sortProps={{
-              options: TagsValuesArray,
+              options: SortValuesArray,
             }}
             paginationProps={DashboardPaginationProps}
             showMenu={false}
