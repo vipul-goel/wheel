@@ -8,9 +8,9 @@ import NoteTable from "./NoteTable";
 import NewNotePane from "./NewNotePane";
 import DeleteAlert from "./DeleteAlert";
 import {
-  InitialNotesData,
-  SortValuesArray,
-  DashboardPaginationProps,
+  INITIAL_NOTES_DATA,
+  SORT_VALUES_ARRAY,
+  DASHBOARD_PAGINATION_PROPS,
 } from "./constants";
 
 const Notes = () => {
@@ -24,7 +24,7 @@ const Notes = () => {
   useEffect(() => {
     setLoading(true);
     const notesTimeout = setTimeout(() => {
-      setNotes(InitialNotesData);
+      setNotes(INITIAL_NOTES_DATA);
       setLoading(false);
     }, 2000);
 
@@ -41,6 +41,7 @@ const Notes = () => {
       note => !selectedNoteIds.includes(note.id)
     );
     setNotes(updatedNotes);
+    setSelectedNoteIds([]);
   };
 
   if (loading) {
@@ -71,9 +72,9 @@ const Notes = () => {
               disabled: !selectedNoteIds.length,
             }}
             sortProps={{
-              options: SortValuesArray,
+              options: SORT_VALUES_ARRAY,
             }}
-            paginationProps={DashboardPaginationProps}
+            paginationProps={DASHBOARD_PAGINATION_PROPS}
             showMenu={false}
           />
           <NoteTable
