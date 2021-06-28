@@ -77,9 +77,7 @@ export default function NoteTable({
                 />
               </td>
               <td>
-                <div className="flex flex-row items-center justify-start text-purple-600">
-                  {note.title}
-                </div>
+                <Button style="link" className="text-left" label={note.title} />
               </td>
               <td>{note.description}</td>
               <td className="text-center">

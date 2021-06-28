@@ -3,15 +3,15 @@ import { Button, PageLoader } from "neetoui";
 import EmptyState from "components/Common/EmptyState";
 import EmptyNotesListImage from "images/EmptyNotesList";
 import { Header, SubHeader } from "neetoui/layouts";
+
+import NoteTable from "./NoteTable";
+import NewNotePane from "./NewNotePane";
+import DeleteAlert from "./DeleteAlert";
 import {
   InitialNotesData,
   SortValuesArray,
   DashboardPaginationProps,
 } from "./constants";
-
-import NoteTable from "./NoteTable";
-import NewNotePane from "./NewNotePane";
-import DeleteAlert from "./DeleteAlert";
 
 const Notes = () => {
   const [loading, setLoading] = useState(false);
