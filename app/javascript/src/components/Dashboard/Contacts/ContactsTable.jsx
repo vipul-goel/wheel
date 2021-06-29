@@ -4,8 +4,13 @@ import { Checkbox, Avatar, Button, Tooltip } from "neetoui";
 const ContactsTable = ({
   selectedContactIds,
   setSelectedContactIds,
+  setShowDeleteAlert,
   contacts,
 }) => {
+  const handleDeleteContact = contactId => {
+    setSelectedContactIds([contactId]);
+    setShowDeleteAlert(true);
+  };
   return (
     <div className="w-full px-4">
       <table className="nui-table nui-table--checkbox nui-table--actions">
@@ -83,7 +88,11 @@ const ContactsTable = ({
                     <Button style="icon" icon="ri-edit-line" />
                   </Tooltip>
                   <Tooltip content="Delete" position="bottom">
-                    <Button style="icon" icon="ri-delete-bin-5-line" />
+                    <Button
+                      style="icon"
+                      icon="ri-delete-bin-5-line"
+                      onClick={() => handleDeleteContact(contact.id)}
+                    />
                   </Tooltip>
                 </div>
               </td>
