@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Button, PageLoader } from "neetoui";
+import { Button, PageLoader, Toastr } from "neetoui";
 import EmptyState from "components/Common/EmptyState";
 import EmptyNotesListImage from "images/EmptyNotesList";
 import { Header, SubHeader } from "neetoui/layouts";
@@ -32,6 +32,7 @@ const Notes = () => {
   const addNewNote = newNote => {
     newNote.id = notes.length + 1;
     setNotes([...notes, newNote]);
+    Toastr.success("New Note added successfully");
   };
 
   const updateNote = updatedNote => {
@@ -39,6 +40,7 @@ const Notes = () => {
       note.id === updatedNote.id ? updatedNote : note
     );
     setNotes(updatedNotes);
+    Toastr.success("Note updated successfully");
   };
 
   const showUpdateNotePane = note => {
@@ -57,6 +59,7 @@ const Notes = () => {
     );
     setNotes(updatedNotes);
     setSelectedNoteIds([]);
+    Toastr.success("Note deleted successfully");
   };
 
   if (loading) {

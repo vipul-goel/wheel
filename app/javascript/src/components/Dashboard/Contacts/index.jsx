@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Button, PageLoader } from "neetoui";
+import { Button, PageLoader, Toastr } from "neetoui";
 import EmptyState from "components/Common/EmptyState";
 import EmptyNotesListImage from "images/EmptyNotesList";
 import { Header, SubHeader } from "neetoui/layouts";
@@ -35,6 +35,7 @@ const Contacts = () => {
   const addNewContact = newContact => {
     newContact.id = contacts.length + 1;
     setContacts([...contacts, newContact]);
+    Toastr.success("New Contact added successfully");
   };
 
   const updateContact = updatedContact => {
@@ -42,6 +43,7 @@ const Contacts = () => {
       contact.id === updatedContact.id ? updatedContact : contact
     );
     setContacts(updatedContacts);
+    Toastr.success("Contact updated successfully");
   };
 
   const showUpdateContactPane = contact => {
@@ -55,13 +57,16 @@ const Contacts = () => {
   };
 
   const toggleContactAddToBasecamp = contactId => {
+    let isAdded = true;
     const updatedContacts = contacts.map(contact => {
       if (contact.id === contactId) {
         contact.addToBasecamp = !contact.addToBasecamp;
+        isAdded = contact.addToBasecamp;
       }
       return contact;
     });
     setContacts(updatedContacts);
+    Toastr.success(`Contact ${isAdded ? "added to" : "removed from"} bootcamp`);
   };
 
   const deleteContacts = () => {
@@ -70,6 +75,7 @@ const Contacts = () => {
     );
     setContacts(updatedContacts);
     setSelectedContactIds([]);
+    Toastr.success("Contact deleted successfully");
   };
 
   if (loading) {
