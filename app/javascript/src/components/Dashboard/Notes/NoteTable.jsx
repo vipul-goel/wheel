@@ -43,12 +43,12 @@ export default function NoteTable({
                 }}
               />
             </th>
-            <th className="text-left text-gray-400">title</th>
-            <th className="text-left text-gray-400">description</th>
-            <th className="text-center text-gray-400">tags</th>
-            <th className="text-center text-gray-400">created date</th>
-            <th className="text-center text-gray-400">due date</th>
-            <th className="text-center text-gray-400">contact</th>
+            <th className="text-left">title</th>
+            <th className="text-left">description</th>
+            <th className="text-center">tags</th>
+            <th className="text-center">created date</th>
+            <th className="text-center">due date</th>
+            <th className="text-center">contact</th>
             <th></th>
           </tr>
         </thead>

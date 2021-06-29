@@ -7,11 +7,8 @@ import { Header, SubHeader } from "neetoui/layouts";
 import NoteTable from "./NoteTable";
 import NewNotePane from "./NewNotePane";
 import DeleteAlert from "./DeleteAlert";
-import {
-  INITIAL_NOTES_DATA,
-  SORT_VALUES_ARRAY,
-  DASHBOARD_PAGINATION_PROPS,
-} from "./constants";
+import { INITIAL_NOTES_DATA } from "./constants";
+import { SORT_VALUES_ARRAY, DASHBOARD_PAGINATION_PROPS } from "../constants";
 
 const Notes = () => {
   const [loading, setLoading] = useState(false);

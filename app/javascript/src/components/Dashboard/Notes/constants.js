@@ -29,7 +29,7 @@ export const INITIAL_NOTES_DATA = [
     createdDate: "April 10, 2021",
     isDueDate: true,
     dueDate: "April 10, 2021",
-    contact: "Vinay V",
+    contact: "Vinay Chandran",
   },
   {
     id: 3,
@@ -42,12 +42,6 @@ export const INITIAL_NOTES_DATA = [
   },
 ];
 
-export const SORT_VALUES_ARRAY = [
-  { label: "Tags", value: "tags" },
-  { label: "Name", value: "name" },
-  { label: "Created Date", value: "createdDate" },
-];
-
 export const TAG_VALUES_ARRAY = [
   { value: "Internal", label: "Internal" },
   { value: "Agile Workflow", label: "Agile Workflow" },
@@ -56,16 +50,10 @@ export const TAG_VALUES_ARRAY = [
 
 export const CONTACT_VALUES_ARRAY = [
   { value: "Neeraj Singh", label: "Neeraj Singh" },
-  { value: "Vinay V", label: "Vinay V" },
+  { value: "Vinay Chandran", label: "Vinay Chandran" },
   { value: "Charlie Smith", label: "Charlie Smith" },
   { value: "Karthik Menon", label: "Karthik Menon" },
 ];
-
-export const DASHBOARD_PAGINATION_PROPS = {
-  count: 250,
-  pageNo: 1,
-  pageSize: 50,
-};
 
 export const INITIAL_NOTE_FORM_VALUES = {
   title: "",
