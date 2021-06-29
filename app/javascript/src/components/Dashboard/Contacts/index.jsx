@@ -5,11 +5,13 @@ import EmptyNotesListImage from "images/EmptyNotesList";
 import { Header, SubHeader } from "neetoui/layouts";
 
 import ContactsTable from "./ContactsTable";
+import NewContactPane from "./NewContactPane";
 import { INITIAL_CONTACTS_DATA } from "./constants";
 import { SORT_VALUES_ARRAY, DASHBOARD_PAGINATION_PROPS } from "../constants";
 
 const Contacts = () => {
   const [loading, setLoading] = useState(false);
+  const [showNewContactPane, setShowNewContactPane] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedContactIds, setSelectedContactIds] = useState([]);
   const [contacts, setContacts] = useState([]);
@@ -24,6 +26,11 @@ const Contacts = () => {
     return () => clearTimeout(contactsTimeout);
   }, []);
 
+  const addNewContact = newContact => {
+    newContact.id = contacts.length + 1;
+    setContacts([...contacts, newContact]);
+  };
+
   if (loading) {
     return <PageLoader />;
   }
@@ -31,7 +38,13 @@ const Contacts = () => {
     <>
       <Header
         title="Contacts"
-        actionBlock={<Button label="New Contact" icon="ri-add-line" />}
+        actionBlock={
+          <Button
+            label="New Contact"
+            icon="ri-add-line"
+            onClick={() => setShowNewContactPane(true)}
+          />
+        }
       />
       {contacts.length ? (
         <>
@@ -59,9 +72,15 @@ const Contacts = () => {
           image={EmptyNotesListImage}
           title="Looks like you don't have any contacts!"
           subtitle="Add your contacts to send customized emails to them."
+          primaryAction={() => setShowNewContactPane(true)}
           primaryActionLabel="Add New Contact"
         />
       )}
+      <NewContactPane
+        addNewContact={addNewContact}
+        showPane={showNewContactPane}
+        setShowPane={setShowNewContactPane}
+      />
     </>
   );
 };

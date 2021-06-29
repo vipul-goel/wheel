@@ -71,7 +71,7 @@ export default function NewNoteForm({ onClose, addNewNote }) {
 
             <Button
               type="submit"
-              label="Submit"
+              label="Save Changes"
               size="large"
               style="primary"
               className="ml-2"
