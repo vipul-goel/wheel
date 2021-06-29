@@ -3,20 +3,16 @@ import { Formik, Form } from "formik";
 import { Input, Select, Switch } from "neetoui/formik";
 import { Button } from "neetoui";
 
-import {
-  INITIAL_CONTACT_FORM_VALUES,
-  CONTACT_FORM_VALIDATIONS,
-  DEPARTMENT_VALUES_ARRAY,
-} from "./constants";
+import { CONTACT_FORM_VALIDATIONS, DEPARTMENT_VALUES_ARRAY } from "./constants";
 
-const NewContactForm = ({ onClose, addNewContact }) => {
+const NewContactForm = ({ onClose, saveChanges, initialFormValues }) => {
   const handleSubmit = values => {
-    addNewContact(values);
+    saveChanges(values);
     onClose();
   };
   return (
     <Formik
-      initialValues={INITIAL_CONTACT_FORM_VALUES}
+      initialValues={initialFormValues}
       onSubmit={handleSubmit}
       validationSchema={CONTACT_FORM_VALIDATIONS}
     >

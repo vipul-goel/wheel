@@ -1,6 +1,7 @@
 import React from "react";
 import { Pane } from "neetoui";
 import NewNoteForm from "./NewNoteForm";
+
 import { INITIAL_NOTE_FORM_VALUES } from "./constants";
 
 export default function NewNotePane({

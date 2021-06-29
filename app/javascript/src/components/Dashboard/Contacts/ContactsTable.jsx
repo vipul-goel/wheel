@@ -5,6 +5,8 @@ const ContactsTable = ({
   selectedContactIds,
   setSelectedContactIds,
   setShowDeleteAlert,
+  showUpdateContactPane,
+  updateAddToBasecamp,
   contacts,
 }) => {
   const handleDeleteContact = contactId => {
@@ -80,12 +82,19 @@ const ContactsTable = ({
               <td className="text-center">{contact.department}</td>
               <td className="text-center">{contact.contactNumber}</td>
               <td>
-                <Checkbox checked={contact.addToBasecamp} />
+                <Checkbox
+                  checked={contact.addToBasecamp}
+                  onClick={() => updateAddToBasecamp(contact.id)}
+                />
               </td>
               <td>
                 <div className="flex flex-row space-x-2">
                   <Tooltip content="Edit" position="bottom">
-                    <Button style="icon" icon="ri-edit-line" />
+                    <Button
+                      style="icon"
+                      icon="ri-edit-line"
+                      onClick={() => showUpdateContactPane(contact)}
+                    />
                   </Tooltip>
                   <Tooltip content="Delete" position="bottom">
                     <Button
