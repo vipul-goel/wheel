@@ -17,6 +17,10 @@ const Contacts = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedContactIds, setSelectedContactIds] = useState([]);
   const [contacts, setContacts] = useState([]);
+  const [editContactData, setEditContactData] = useState({
+    show: false,
+    contact: null,
+  });
 
   useEffect(() => {
     setLoading(true);
@@ -31,6 +35,33 @@ const Contacts = () => {
   const addNewContact = newContact => {
     newContact.id = contacts.length + 1;
     setContacts([...contacts, newContact]);
+  };
+
+  const updateContact = updatedContact => {
+    const updatedContacts = contacts.map(contact =>
+      contact.id === updatedContact.id ? updatedContact : contact
+    );
+    setContacts(updatedContacts);
+  };
+
+  const showUpdateContactPane = contact => {
+    setEditContactData({ show: true, contact });
+    setShowNewContactPane(true);
+  };
+
+  const closeNewContactPane = () => {
+    setShowNewContactPane(false);
+    setEditContactData({ show: false, contact: null });
+  };
+
+  const toggleContactAddToBasecamp = contactId => {
+    const updatedContacts = contacts.map(contact => {
+      if (contact.id === contactId) {
+        contact.addToBasecamp = !contact.addToBasecamp;
+      }
+      return contact;
+    });
+    setContacts(updatedContacts);
   };
 
   const deleteContacts = () => {
@@ -78,6 +109,8 @@ const Contacts = () => {
             selectedContactIds={selectedContactIds}
             setSelectedContactIds={setSelectedContactIds}
             setShowDeleteAlert={setShowDeleteAlert}
+            showUpdateContactPane={showUpdateContactPane}
+            updateAddToBasecamp={toggleContactAddToBasecamp}
             contacts={contacts}
           />
         </>
@@ -93,7 +126,10 @@ const Contacts = () => {
       <NewContactPane
         addNewContact={addNewContact}
         showPane={showNewContactPane}
-        setShowPane={setShowNewContactPane}
+        onClose={closeNewContactPane}
+        updateContact={updateContact}
+        isEdit={editContactData.show}
+        contactData={editContactData.contact}
       />
       {showDeleteAlert && (
         <DeleteAlert
