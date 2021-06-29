@@ -6,12 +6,14 @@ import { Header, SubHeader } from "neetoui/layouts";
 
 import ContactsTable from "./ContactsTable";
 import NewContactPane from "./NewContactPane";
+import DeleteAlert from "./DeleteAlert";
 import { INITIAL_CONTACTS_DATA } from "./constants";
 import { SORT_VALUES_ARRAY, DASHBOARD_PAGINATION_PROPS } from "../constants";
 
 const Contacts = () => {
   const [loading, setLoading] = useState(false);
   const [showNewContactPane, setShowNewContactPane] = useState(false);
+  const [showDeleteAlert, setShowDeleteAlert] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedContactIds, setSelectedContactIds] = useState([]);
   const [contacts, setContacts] = useState([]);
@@ -29,6 +31,14 @@ const Contacts = () => {
   const addNewContact = newContact => {
     newContact.id = contacts.length + 1;
     setContacts([...contacts, newContact]);
+  };
+
+  const deleteContacts = () => {
+    const updatedContacts = contacts.filter(
+      contact => !selectedContactIds.includes(contact.id)
+    );
+    setContacts(updatedContacts);
+    setSelectedContactIds([]);
   };
 
   if (loading) {
@@ -54,7 +64,10 @@ const Contacts = () => {
               onChange: e => setSearchTerm(e.target.value),
               clear: () => setSearchTerm(""),
             }}
-            deleteButtonProps
+            deleteButtonProps={{
+              onClick: () => setShowDeleteAlert(true),
+              disabled: !selectedContactIds.length,
+            }}
             sortProps={{
               options: SORT_VALUES_ARRAY,
             }}
@@ -64,6 +77,7 @@ const Contacts = () => {
           <ContactsTable
             selectedContactIds={selectedContactIds}
             setSelectedContactIds={setSelectedContactIds}
+            setShowDeleteAlert={setShowDeleteAlert}
             contacts={contacts}
           />
         </>
@@ -81,6 +95,13 @@ const Contacts = () => {
         showPane={showNewContactPane}
         setShowPane={setShowNewContactPane}
       />
+      {showDeleteAlert && (
+        <DeleteAlert
+          deleteContacts={deleteContacts}
+          onClose={() => setShowDeleteAlert(false)}
+          selectedContactIds={selectedContactIds}
+        />
+      )}
     </>
   );
 };
