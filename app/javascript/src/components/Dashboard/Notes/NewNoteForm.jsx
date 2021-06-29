@@ -5,24 +5,27 @@ import { Input, Textarea, Select, Switch } from "neetoui/formik";
 import { Button } from "neetoui";
 
 import {
-  INITIAL_NOTE_FORM_VALUES,
   NOTE_FORM_VALIDATIONS,
   CONTACT_VALUES_ARRAY,
   TAG_VALUES_ARRAY,
 } from "./constants";
 
-export default function NewNoteForm({ onClose, addNewNote }) {
+export default function NewNoteForm({
+  onClose,
+  saveChanges,
+  initialFormValues,
+}) {
   const handleSubmit = values => {
     values.createdDate = dayjs().format("MMMM DD, YYYY");
     values.dueDate = values.isDueDate
       ? dayjs(values.dueDate, "DD/MM/YYYY").format("MMMM DD, YYYY")
       : "";
-    addNewNote(values);
+    saveChanges(values);
     onClose();
   };
   return (
     <Formik
-      initialValues={INITIAL_NOTE_FORM_VALUES}
+      initialValues={initialFormValues}
       onSubmit={handleSubmit}
       validationSchema={NOTE_FORM_VALIDATIONS}
     >

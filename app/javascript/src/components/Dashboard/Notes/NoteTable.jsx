@@ -16,6 +16,7 @@ export default function NoteTable({
   selectedNoteIds,
   setSelectedNoteIds,
   setShowDeleteAlert,
+  showUpdateNotePane,
   notes = [],
 }) {
   const handleDeleteNote = noteId => {
@@ -97,7 +98,11 @@ export default function NoteTable({
               <td>
                 <div className="flex flex-row space-x-2">
                   <Tooltip content="Edit" position="bottom">
-                    <Button style="icon" icon="ri-edit-line" />
+                    <Button
+                      style="icon"
+                      icon="ri-edit-line"
+                      onClick={() => showUpdateNotePane(note)}
+                    />
                   </Tooltip>
                   <Tooltip content="Delete" position="bottom">
                     <Button

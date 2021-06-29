@@ -17,6 +17,7 @@ const Notes = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedNoteIds, setSelectedNoteIds] = useState([]);
   const [notes, setNotes] = useState([]);
+  const [editNoteData, setEditNoteData] = useState({ show: false, note: null });
 
   useEffect(() => {
     setLoading(true);
@@ -31,6 +32,23 @@ const Notes = () => {
   const addNewNote = newNote => {
     newNote.id = notes.length + 1;
     setNotes([...notes, newNote]);
+  };
+
+  const updateNote = updatedNote => {
+    const updatedNotes = notes.map(note =>
+      note.id === updatedNote.id ? updatedNote : note
+    );
+    setNotes(updatedNotes);
+  };
+
+  const showUpdateNotePane = note => {
+    setEditNoteData({ show: true, note });
+    setShowNewNotePane(true);
+  };
+
+  const closeNewNotePane = () => {
+    setShowNewNotePane(false);
+    setEditNoteData({ show: false, note: null });
   };
 
   const deleteNotes = () => {
@@ -78,6 +96,7 @@ const Notes = () => {
             selectedNoteIds={selectedNoteIds}
             setSelectedNoteIds={setSelectedNoteIds}
             setShowDeleteAlert={setShowDeleteAlert}
+            showUpdateNotePane={showUpdateNotePane}
             notes={notes}
           />
         </>
@@ -92,8 +111,11 @@ const Notes = () => {
       )}
       <NewNotePane
         showPane={showNewNotePane}
-        setShowPane={setShowNewNotePane}
+        onClose={closeNewNotePane}
         addNewNote={addNewNote}
+        updateNote={updateNote}
+        isEdit={editNoteData.show}
+        noteData={editNoteData.note}
       />
       {showDeleteAlert && (
         <DeleteAlert
