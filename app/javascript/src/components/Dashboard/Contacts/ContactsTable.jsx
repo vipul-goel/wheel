@@ -81,7 +81,7 @@ const ContactsTable = ({
               <td>{contact.email}</td>
               <td className="text-center">{contact.department}</td>
               <td className="text-center">{contact.contactNumber}</td>
-              <td>
+              <td className="contact-basecamp-checkbox">
                 <Checkbox
                   checked={contact.addToBasecamp}
                   onClick={() => updateAddToBasecamp(contact.id)}

@@ -20,7 +20,7 @@ const NewContactForm = ({ onClose, saveChanges, initialFormValues }) => {
         <Form className="space-y-6">
           <Input label="Name" name="name" />
           <Input label="Email" name="email" />
-          <Input label="Contact Number" name="contactNumber" />
+          <Input label="Contact Number" name="contactNumber" type="number" />
           <Select
             label="Department"
             name="department"
