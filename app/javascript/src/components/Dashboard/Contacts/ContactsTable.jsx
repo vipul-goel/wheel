@@ -82,11 +82,12 @@ const ContactsTable = ({
               <td className="text-center">{contact.department}</td>
               <td className="text-center">{contact.contactNumber}</td>
               <td>
-                <Checkbox
-                  className="justify-center"
-                  checked={contact.addToBasecamp}
-                  onClick={() => updateAddToBasecamp(contact.id)}
-                />
+                <div className="flex flex-row items-center justify-center">
+                  <Checkbox
+                    checked={contact.addToBasecamp}
+                    onClick={() => updateAddToBasecamp(contact.id)}
+                  />
+                </div>
               </td>
               <td>
                 <div className="flex flex-row space-x-2">
