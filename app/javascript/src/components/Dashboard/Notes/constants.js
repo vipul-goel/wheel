@@ -1,15 +1,4 @@
 import * as yup from "yup";
-import dayjs from "dayjs";
-
-yup.addMethod(yup.string, "validDateInput", function (errorMessage) {
-  return this.test("test-date-input", errorMessage, function (value) {
-    const { path, createError } = this;
-    return (
-      dayjs(value, "DD/MM/YYYY").isValid() ||
-      createError({ path, message: errorMessage })
-    );
-  });
-});
 
 export const INITIAL_NOTES_DATA = [
   {
@@ -61,7 +50,6 @@ export const INITIAL_NOTE_FORM_VALUES = {
   description: "",
   contact: "",
   isDueDate: false,
-  dueDate: "",
 };
 
 export const NOTE_FORM_VALIDATIONS = yup.object({
@@ -70,12 +58,4 @@ export const NOTE_FORM_VALIDATIONS = yup.object({
   description: yup.string().required("Description is required"),
   contact: yup.string().required("Contact is required"),
   isDueDate: yup.boolean(),
-  dueDate: yup.string().when("isDueDate", {
-    is: true,
-    then: yup
-      .string()
-      .required("Due Date is required")
-      .validDateInput("Enter a valid date in DD/MM/YYYY format only"),
-    otherwise: yup.string(),
-  }),
 });

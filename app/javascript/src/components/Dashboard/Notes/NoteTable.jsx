@@ -80,7 +80,7 @@ export default function NoteTable({
               <td>
                 <Button style="link" className="text-left" label={note.title} />
               </td>
-              <td>{note.description}</td>
+              <td className="truncate max-w-xs">{note.description}</td>
               <td className="text-center">
                 <Badge color={GetBadgeColor(note.tag)}>{note.tag}</Badge>
               </td>

@@ -2,7 +2,7 @@ import React from "react";
 import dayjs from "dayjs";
 import { Formik, Form } from "formik";
 import { Input, Textarea, Select, Switch } from "neetoui/formik";
-import { Button } from "neetoui";
+import { Button, DateInput } from "neetoui";
 
 import {
   NOTE_FORM_VALIDATIONS,
@@ -16,10 +16,8 @@ export default function NewNoteForm({
   initialFormValues,
 }) {
   const handleSubmit = values => {
+    if (values.isDueDate && !values.dueDate) return false;
     values.createdDate = dayjs().format("MMMM DD, YYYY");
-    values.dueDate = values.isDueDate
-      ? dayjs(values.dueDate, "DD/MM/YYYY").format("MMMM DD, YYYY")
-      : "";
     saveChanges(values);
     onClose();
   };
@@ -58,10 +56,27 @@ export default function NewNoteForm({
             <Switch name="isDueDate" />
           </div>
           {values.isDueDate && (
-            <Input
-              placeholder="Ex: 21/10/2021"
+            <DateInput
               label="Due Date"
-              name="dueDate"
+              format="DD/MM/YYYY"
+              minDate={new Date()}
+              canClearSelection={false}
+              value={
+                initialFormValues.isDueDate
+                  ? new Date(initialFormValues.dueDate)
+                  : undefined
+              }
+              onChange={newDate =>
+                setFieldValue(
+                  "dueDate",
+                  newDate ? dayjs(newDate).format("MMM DD, YYYY") : null
+                )
+              }
+              error={
+                values.isDueDate && !values.dueDate
+                  ? "Due date is required"
+                  : ""
+              }
             />
           )}
           <div className="nui-pane__footer nui-pane__footer--absolute">

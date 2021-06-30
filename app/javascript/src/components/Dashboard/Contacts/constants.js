@@ -6,7 +6,7 @@ export const INITIAL_CONTACTS_DATA = [
     name: "Neeraj Singh",
     email: "neeraj@bigbinary.com",
     department: "Engineering",
-    contactNumber: "(555)-390-102",
+    contactNumber: "555390102",
     addToBasecamp: false,
   },
   {
@@ -40,7 +40,11 @@ export const CONTACT_FORM_VALIDATIONS = yup.object({
     .string()
     .email("Enter a valid email")
     .required("Email is required"),
-  contactNumber: yup.string().required("Contact Number is required"),
+  contactNumber: yup
+    .number()
+    .required("Contact Number is required")
+    .positive("Enter a valid contact number")
+    .integer("Enter a valid contact number"),
   department: yup.string().required("Department is required"),
   addToBasecamp: yup.boolean(),
 });
